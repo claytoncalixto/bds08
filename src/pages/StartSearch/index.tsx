@@ -10,10 +10,10 @@ type FormData = {
 
 type Address = {
   avatar_url: string;
-  perfil: string;
-  seguidores: string; 
-  localidade: string;
-  nome: string;
+  url: string;
+  followers_url: string;
+  location: string;
+  name: string;
 };
 
 const StartSearch = () => {
@@ -27,14 +27,14 @@ const StartSearch = () => {
     const name = event.target.name;
     const value = event.target.value;
 
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]:value });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     axios
-      .get(`https://api.github.com/users/${formData.user}/json/`)
+      .get(`https://api.github.com/users/${formData.user}`)
       .then((response) => {
         setAddress(response.data);
         console.log(response.data);
@@ -65,22 +65,24 @@ const StartSearch = () => {
           </div>
         </form>
       </div>
-      <div className="container find-container" >
-        <div className="container find-container-img">
-        {address && (
-          <ResultCard title="Imagem" description={address.avatar_url} />
-        )}
-        </div>
-        <div className="container find-container-data">
-        <h4>Informações</h4>
-        {address && (
-          <>
-            <ResultCard title="Perfil" description={address.perfil} />
-            <ResultCard title="Seguidores" description={address.seguidores} />
-            <ResultCard title="Localidade" description={address.localidade} />
-            <ResultCard title="Nome" description={address.nome} />
-          </>
-        )}
+      <div>
+        <div className="container find-container">
+          <div className="container find-container-img">
+            {address && (
+              <ResultCard title="Imagem" description={address.avatar_url} />
+            )}
+          </div>
+          <div className="container find-container-data">
+            <h4>Informações</h4>
+            {address && (
+              <>
+                <ResultCard title="Perfil: " description={address.url} />
+                <ResultCard title="Seguidores: " description={address.followers_url} />
+                <ResultCard title="Localidade: " description={address.location} />
+                <ResultCard title="Nome: " description={address.name} />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
