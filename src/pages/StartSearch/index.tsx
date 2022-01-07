@@ -5,19 +5,22 @@ import { useState } from 'react';
 import axios from 'axios';
 
 type FormData = {
-  cep: string;
+  user: string;
 };
 
 type Address = {
-  logradouro: string;
+  avatar_url: string;
+  perfil: string;
+  seguidores: string; 
   localidade: string;
+  nome: string;
 };
 
-const CepSearch = () => {
+const StartSearch = () => {
   const [address, setAddress] = useState<Address>();
 
   const [formData, setFormData] = useState<FormData>({
-    cep: '',
+    user: '',
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +34,7 @@ const CepSearch = () => {
     event.preventDefault();
 
     axios
-      .get(`https://viacep.com.br/ws/${formData.cep}/json/`)
+      .get(`https://api.github.com/users/${formData.user}/json/`)
       .then((response) => {
         setAddress(response.data);
         console.log(response.data);
@@ -43,33 +46,45 @@ const CepSearch = () => {
   };
 
   return (
-    <div className="cep-search-container">
-      <h1 className="text-primary">Busca CEP</h1>
+    <div className="start-search-container">
       <div className="container search-container">
+        <h1 className="text-primary">Encontre um perfil Github</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-container">
             <input
               type="text"
-              name="cep"
-              value={formData.cep}
+              name="user"
+              value={formData.user}
               className="search-input"
-              placeholder="CEP (somente números)"
+              placeholder="Usuário Github"
               onChange={handleChange}
             />
             <button type="submit" className="btn btn-primary search-button">
-              Buscar
+              Encontrar
             </button>
           </div>
         </form>
+      </div>
+      <div className="container find-container" >
+        <div className="container find-container-img">
+        {address && (
+          <ResultCard title="Imagem" description={address.avatar_url} />
+        )}
+        </div>
+        <div className="container find-container-data">
+        <h4>Informações</h4>
         {address && (
           <>
-            <ResultCard title="Logradouro" description={address.logradouro} />
+            <ResultCard title="Perfil" description={address.perfil} />
+            <ResultCard title="Seguidores" description={address.seguidores} />
             <ResultCard title="Localidade" description={address.localidade} />
+            <ResultCard title="Nome" description={address.nome} />
           </>
         )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default CepSearch;
+export default StartSearch;

@@ -1,7 +1,40 @@
 .home-container {
-    padding: 40px;
+  padding: 40px;
+}
+
+.home-container-desafio h2 {
+  width: 423px;
+  height: 64px;
+  left: 41px;
+  top: 89px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 64px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+
+.home-container-bootcamp h6 {
+  position: absolute;
+  width: 425px;
+  height: 40px;
+  left: 41px;
+  top: 153px;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  color: #7e7e7e;
 }
 
 .start-button {
-    color: #fff;
+  color: #fff;
+  background-color: #1890ff;
 }
