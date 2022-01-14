@@ -61,7 +61,7 @@
   height: 40px;
   width: 160px;
   margin-bottom: 35px;
-  color: #fff;
+  forced-color-adjust: #FFF;
   background-color: #1890ff;
 }
 

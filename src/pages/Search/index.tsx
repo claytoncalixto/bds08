@@ -32,21 +32,23 @@ const Search = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+ 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    axios
-      .get(`https://api.github.com/users/${formData.user}`)
-      .then((response) => {       
-        setAddress(response.data); 
-        console.log(response.data);       
-        response.status.valueOf() ? <Find /> : <Search />;
-      })
-      .catch((error) => {
-        setAddress(undefined);
-        console.log(error);
-      });
+    event.preventDefault();    
+      axios
+        .get(`https://api.github.com/users/${formData.user}`)
+        .then(response => {       
+          setAddress(response.data); 
+          console.log(response.data);       
+          //response.status.valueOf() ? <Find /> : <Search />;
+          <Find />
+        })
+        .catch((error) => {
+          setAddress(undefined);
+          console.log(error);
+        });     
   };
+
 
   return (
       <div className="container search-container">
