@@ -1,8 +1,8 @@
 import './styles.css';
-
-import ResultCard from 'components/ResultCard';
 import { useState } from 'react';
 import axios from 'axios';
+import Find from 'pages/Find';
+
 
 type FormData = {
   user: string;
@@ -16,18 +16,20 @@ type Address = {
   name: string;
 };
 
-const StartSearch = () => {
-  const [address, setAddress] = useState<Address>();
+
+const Search = () => {
+  
+  const [, setAddress] = useState<Address>();
 
   const [formData, setFormData] = useState<FormData>({
-    user: '',
+    user: ''
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
 
-    setFormData({ ...formData, [name]:value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,9 +37,10 @@ const StartSearch = () => {
 
     axios
       .get(`https://api.github.com/users/${formData.user}`)
-      .then((response) => {
-        setAddress(response.data);
-        console.log(response.data);
+      .then((response) => {       
+        setAddress(response.data); 
+        console.log(response.data);       
+        response.status.valueOf() ? <Find /> : <Search />;
       })
       .catch((error) => {
         setAddress(undefined);
@@ -46,7 +49,6 @@ const StartSearch = () => {
   };
 
   return (
-    <div className="start-search-container">
       <div className="container search-container">
         <h1 className="text-primary">Encontre um perfil Github</h1>
         <form onSubmit={handleSubmit}>
@@ -65,28 +67,7 @@ const StartSearch = () => {
           </div>
         </form>
       </div>
-      <div>
-        <div className="container find-container">
-          <div className="container find-container-img">
-            {address && (
-              <ResultCard title="Imagem" description={address.avatar_url} />
-            )}
-          </div>
-          <div className="container find-container-data">
-            <h4>Informações</h4>
-            {address && (
-              <>
-                <ResultCard title="Perfil: " description={address.url} />
-                <ResultCard title="Seguidores: " description={address.followers_url} />
-                <ResultCard title="Localidade: " description={address.location} />
-                <ResultCard title="Nome: " description={address.name} />
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
-export default StartSearch;
+export default Search;

@@ -4,8 +4,7 @@
   border-radius: 5px;
   padding: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;   
   margin-bottom: 10px;
 }
 
@@ -20,7 +19,8 @@
   font-size: 16px;
   line-height: 24px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
   color: #737373;
 }
 
@@ -35,6 +35,7 @@
   font-size: 16px;
   line-height: 24px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
   color: #737373;
 }

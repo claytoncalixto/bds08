@@ -1,7 +1,9 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import Navbar from 'components/Navbar';
-import StartSearch from 'pages/StartSearch';
+import Search from 'pages/Search';
+import Find from 'pages/Find';
+
 
 const Routes = () => (
   <BrowserRouter>
@@ -10,8 +12,11 @@ const Routes = () => (
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/startsearch">
-        <StartSearch />
+      <Route path="/search">
+        <Search />
+      </Route>
+      <Route path="/find">
+        <Find />
       </Route>
     </Switch>
   </BrowserRouter>
