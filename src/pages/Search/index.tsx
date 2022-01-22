@@ -12,7 +12,7 @@ type Address = {
   url: string;
   followers_url: string;
   location: string;
-  following: string;
+  followers: string;
   name: string;
 };
 
@@ -45,30 +45,35 @@ const Search = () => {
   };
 
   return (
-    <div className="container search-container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-container">
-          <h1 className="text-primary">Encontre um perfil Github</h1>
-          <input
-            type="text"
-            name="user"
-            value={formData.user}
-            className="search-input"
-            placeholder="Usuário Github"
-            onChange={handleChange}
-          />
-          <button type="submit" className="btn btn-primary search-button">
-            Encontrar
-          </button>
-        </div>
-      </form>
-      {address && <ResultCard
-                   url={address.url}
-                   followers={address.following}
-                   description={address.location}
-                   title={address.name}                   
-                   />
-      }
+    <div className="cep-search-container">
+      <div className="container search-container">
+        <form onSubmit={handleSubmit}>
+          <div className="form-container">
+            <h1 className="text-primary">Encontre um perfil Github</h1>
+            <input
+              type="text"
+              name="user"
+              value={formData.user}
+              className="search-input"
+              placeholder="Usuário Github"
+              onChange={handleChange}
+            />
+            <button type="submit" className="btn btn-primary search-button">
+              Encontrar
+            </button>
+          </div>
+        </form>
+      </div>
+      {address && (
+        <>
+          <ResultCard avatar_url={address.avatar_url}  />
+          <h2>Informações</h2>
+          <ResultCard title="Perfil:" description={address.url} />
+          <ResultCard title="Seguidores:" description={address.followers} />
+          <ResultCard title="Localidade:" description={address.location} />
+          <ResultCard title="Nome:" description={address.name} />
+        </>
+      )}
     </div>
   );
 };
