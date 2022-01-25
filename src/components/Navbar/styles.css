@@ -1,9 +1,21 @@
 .main-nav {
   padding-left: 40px;
-  min-height: 70px;
+  min-height: 50px;
   background-color: #1890ff;
 }
 
 .main-nav h4 {
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+@media (max-width: 576px) {
+  .main-nav {
+    width: 700px;
+    max-width: 100%;
+    padding-left: 0;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
 }

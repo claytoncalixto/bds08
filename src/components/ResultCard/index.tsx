@@ -10,15 +10,20 @@ type Props = {
   url?: string;
 };
 
-const ResultCard = ({ title, description, url, location, avatar_url }: Props) => {
+const ResultCard = ({ title, description, url, location, avatar_url, name, followers }: Props) => {
   return (
     
     <div className="result-container">
       <div className="img-container">
-        <img src={avatar_url} alt=''/>
-           
-        <h3 className="result-tile">{title}</h3>   
-        <p className="result-description">{description}</p>   
+        <img src={avatar_url} alt={name}/>
+      </div>
+
+      <div className="info-container">
+        <h3>Informações</h3>
+        <h6>Perfil: {url}</h6>
+        <h6>Seguidores: {followers}</h6>      
+        <h6>Localização: {description} </h6>
+        <h6>Nome: {title}</h6>             
       </div>
     </div>
   );

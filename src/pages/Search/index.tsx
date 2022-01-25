@@ -64,15 +64,13 @@ const Search = () => {
           </div>
         </form>
       </div>
-      {address && (
-        <>
-          <ResultCard avatar_url={address.avatar_url}  />
-          <h2>Informações</h2>
-          <ResultCard title="Perfil:" description={address.url} />
-          <ResultCard title="Seguidores:" description={address.followers} />
-          <ResultCard title="Localidade:" description={address.location} />
-          <ResultCard title="Nome:" description={address.name} />
-        </>
+      {address && (        
+          <ResultCard 
+          avatar_url={address.avatar_url}
+          url={address.url}
+          followers={address.followers}
+          title={address.name} 
+          description={address.location} />
       )}
     </div>
   );
